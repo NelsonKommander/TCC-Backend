@@ -7,8 +7,8 @@ struct Maintenance:
     date: uint256
 
 # State variables for the Vehicle contract
-owner: public(address)
-plate: public(String[7])
+owner: address
+vin: String[17]
 maintenance_index: uint256
 maintenances: DynArray[Maintenance,256]
 
@@ -18,9 +18,9 @@ event Transfered:
     n_owner: address
 
 @external
-def __init__(_owner: address, _plate: String[7]):
+def setup(_owner: address, _vin: String[17]):
     self.owner = _owner
-    self.plate = _plate
+    self.vin = _vin
 
 @external
 def register_maintenance(_description: String[128], _location: String[128], _date: uint256):
@@ -56,6 +56,16 @@ def get_maintenances() -> (DynArray[address, 256], DynArray[String[128], 256], D
         _date.append(maintenance.date)
 
     return (_registered_by, _description, _location, _date)
+
+@external
+@view
+def get_owner() -> address:
+    return self.owner
+
+@external
+@view
+def get_vin() -> String[17]:
+    return self.vin
 
 @external
 def transfer_to(new_owner: address):
