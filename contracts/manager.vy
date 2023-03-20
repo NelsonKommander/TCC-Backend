@@ -14,6 +14,10 @@ vehicleTemplate: address
 vehicles: DynArray[Register, 256]
 
 @external
+def __init__(template: address):
+    self.vehicleTemplate = template
+
+@external
 def add_vehicle(owner: address, vin: String[17]):
     new_vehicle_address: address = create_minimal_proxy_to(self.vehicleTemplate)
     Vehicle(new_vehicle_address).setup(owner, vin)
