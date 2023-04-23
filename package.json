@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "compile": "npx hardhat compile",
-    "deploy": "npx hardhat run --network ganache scripts/deploy.js"
+    "deploy": "npx hardhat run --network sepolia scripts/deploy.js",
+    "deploy-test": "npx hardhat run --network ganache scripts/deploy-test.js"
   },
   "author": "",
   "license": "ISC",
@@ -15,5 +16,8 @@
     "ethers": "^5.0.0",
     "hardhat": "^2.12.7",
     "hardhat-deploy": "^0.11.23"
+  },
+  "dependencies": {
+    "dotenv": "^16.0.3"
   }
 }

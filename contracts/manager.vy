@@ -8,7 +8,7 @@ struct Register:
     vehicle_address: address
     owner: address
     vin: String[17]
-    model: String[256]
+    model: String[128]
 
 # State variables
 vehicle_template: address
@@ -23,7 +23,7 @@ def __init__(template: address):
     self.new_vehicle_index = 0
 
 @external
-def add_vehicle(_owner: address, _vin: String[17], _model: String[256]):
+def add_vehicle(_owner: address, _vin: String[17], _model: String[128]):
     new_vehicle_address: address = create_minimal_proxy_to(self.vehicle_template)
     Vehicle(new_vehicle_address).setup(self, _owner, _vin, _model)
     self.vehicles.append(Register({vehicle_address: new_vehicle_address, owner: _owner, vin: _vin, model: _model}))

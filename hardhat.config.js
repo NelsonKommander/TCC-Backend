@@ -1,7 +1,11 @@
 /** @type import('hardhat/config').HardhatUserConfig */
-require("@nomiclabs/hardhat-vyper");
+require('dotenv').config();
 require('hardhat-deploy');
 require("@nomiclabs/hardhat-ethers");
+require("@nomiclabs/hardhat-vyper");
+
+const { API_URL, PRIVATE_KEY } = process.env;
+
 module.exports = {
   defaultNetwork: "ganache",
   networks: {
@@ -21,6 +25,10 @@ module.exports = {
         "0xecfb80c5600be5dc7455100240f05d2f013bdd1e8716b869e03ff39b2c44d4b9",
         "0xce7919d1f04570abaf42271d3dae28c0f1e270b5f2bdd918e31c43d6fde3a125"
       ]
+    },
+    sepolia: {
+      url: "https://eth-sepolia.g.alchemy.com/v2/fgT0gsp-ANn8ssOUOM-g9jS3Hb6Ba38Y",
+      accounts: [`0x${PRIVATE_KEY}`]
     }
   },
   solidity: "0.8.17",
